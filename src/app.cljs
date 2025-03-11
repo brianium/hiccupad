@@ -313,6 +313,8 @@
         copy-button (get-element-by-id "copy-button")]
     (when (and textarea convert-button copy-button)
       (.addEventListener textarea "input" (fn [_] (toggle-convert-button)))
+      (.addEventListener textarea "blur" translate)
+      (.addEventListener convert-button "click" translate)
       (.addEventListener copy-button "click" (fn [_] (copy-to-clipboard))))))
   
 (init)
