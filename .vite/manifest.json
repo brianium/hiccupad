@@ -1,0 +1,13 @@
+{
+  "dist/app.js": {
+    "file": "assets/app-mwZzn-uP.js",
+    "name": "app",
+    "src": "dist/app.js",
+    "isEntry": true
+  },
+  "src/app.css": {
+    "file": "assets/app-BChkxkgF.css",
+    "src": "src/app.css",
+    "isEntry": true
+  }
+}

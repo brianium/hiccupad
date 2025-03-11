@@ -1,3 +1,0 @@
-{:paths      ["src"]
- :output-dir "dist"
- :extension  "js"}

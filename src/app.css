@@ -1,8 +1,0 @@
-@import "tailwindcss";
-@plugin "daisyui" {
-    themes: winter --default, sunset --prefersdark;
-}
-
-@theme {
-    --font-sans: InterVariable, sans-serif;
-}
