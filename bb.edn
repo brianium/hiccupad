@@ -1,9 +1,28 @@
-{:tasks
- {dev:squint (shell "npx squint watch --repl true")
+{:deps
+ {org.babashka/json {:mvn/version "0.1.6"}}
+ 
+ :tasks
+ {:requires ([babashka.json :as json]
+             [clojure.string :as str])
+  
+  dev:squint (shell "npx squint watch --repl true")
   dev:vite   (shell "npx vite")
   -dev {:depends [dev:squint dev:vite]}
   dev (run '-dev {:parallel true})
 
   build:squint (shell "npx squint compile")
   build:vite   (shell "npx vite build")
-  build {:depends [build:squint build:vite]}}}
+  
+  update-html {:doc "Update index.html with hashed filenames from Vite manifest"
+               :task (let [manifest (json/read-str (slurp "dist/.vite/manifest.json") {:key-fn identity})
+                           css-path (get-in manifest ["src/app.css" "file"])
+                           js-path (get-in manifest ["dist/app.js" "file"])
+                           html (slurp "index.html")
+                           updated-html (-> html
+                                            (str/replace "/src/app.css" (str "/dist/" css-path))
+                                            (str/replace "/dist/app.js" (str "/dist/" js-path)))]
+                       (println manifest)
+                       (spit "index.html" updated-html)
+                       (println "✓ Updated index.html with manifest paths"))}
+  
+  build {:depends [build:squint build:vite update-html]}}}
