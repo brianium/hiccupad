@@ -21,7 +21,6 @@
                            updated-html (-> html
                                             (str/replace "/src/app.css" css-path)
                                             (str/replace "/dist/app.js" js-path))]
-                       (println manifest)
                        ;; Copy index.html to dist directory
                        (spit "dist/index.html" updated-html) 
                        (println "✓ Updated index.html with manifest paths and copied to dist/"))}
