@@ -19,10 +19,11 @@
                            js-path (get-in manifest ["dist/app.js" "file"])
                            html (slurp "index.html")
                            updated-html (-> html
-                                            (str/replace "/src/app.css" (str "/dist/" css-path))
-                                            (str/replace "/dist/app.js" (str "/dist/" js-path)))]
+                                            (str/replace "/src/app.css" (str "/" css-path))
+                                            (str/replace "/dist/app.js" (str "/" js-path)))]
                        (println manifest)
-                       (spit "index.html" updated-html)
-                       (println "✓ Updated index.html with manifest paths"))}
+                       ;; Copy index.html to dist directory
+                       (spit "dist/index.html" updated-html) 
+                       (println "✓ Updated index.html with manifest paths and copied to dist/"))}
   
   build {:depends [build:squint build:vite update-html]}}}
