@@ -6,3 +6,7 @@
 @theme {
     --font-sans: InterVariable, sans-serif;
 }
+
+[data-count="0"] + #copy-button {
+    display: none;
+}

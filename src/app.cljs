@@ -238,7 +238,7 @@
               pretty-hiccup (pretty-print-hiccup hiccup)]
           ;; Clear the result element
           (set! (.-innerHTML result-el) "")
-          
+          (.setAttribute result-el "data-count" (count hiccup))
           ;; Create pre and code elements
           (let [pre-el (js/document.createElement "pre")
                 code-el (js/document.createElement "code")]
@@ -266,13 +266,7 @@
           (set! (.-innerHTML result-el) 
                 (str "<div class=\"text-error\">Error parsing HTML: " 
                      (.-message e) 
-                     "</div>")))))
-    
-    ;; Show/hide the copy button
-    (let [copy-button (get-element-by-id "copy-button")]
-      (if (and html-input (not (str/blank? html-input)))
-        (.remove (.-classList copy-button) "hidden")
-        (.add (.-classList copy-button) "hidden")))
+                     "</div>"))))) 
     
     (js/console.log "Translation complete")))
 
