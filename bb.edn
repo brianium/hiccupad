@@ -19,8 +19,8 @@
                            js-path (get-in manifest ["dist/app.js" "file"])
                            html (slurp "index.html")
                            updated-html (-> html
-                                            (str/replace "/src/app.css" (str "/" css-path))
-                                            (str/replace "/dist/app.js" (str "/" js-path)))]
+                                            (str/replace "/src/app.css" css-path)
+                                            (str/replace "/dist/app.js" js-path))]
                        (println manifest)
                        ;; Copy index.html to dist directory
                        (spit "dist/index.html" updated-html) 
